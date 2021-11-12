@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "805017989600",
+    "project_id": "scam-5a5da",
+    "storage_bucket": "scam-5a5da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805017989600:android:d87c7ee5151c8254943b85",
+        "android_client_info": {
+          "package_name": "com.scam_stories.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805017989600-6v6nc78rcfe165fi5vcrkh9glbetrfh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCirvk_wmcfjCq72Dug_RzQyqL8t4vqeus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805017989600-6v6nc78rcfe165fi5vcrkh9glbetrfh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
