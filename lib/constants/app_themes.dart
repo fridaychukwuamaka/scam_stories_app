@@ -12,12 +12,13 @@ class AppThemes {
     fontSize: 9,
   );
 
-   static snackBar(msg) {
+  static snackBar(msg, {bool inverted = false}) {
     return Get.snackbar(
       'Message',
       msg,
-      backgroundColor: Colors.white,
+      backgroundColor: inverted ? Colors.black : Colors.white,
       margin: EdgeInsets.zero,
+      colorText: inverted ? Colors.white : Colors.black,
       borderRadius: 0,
     );
   }

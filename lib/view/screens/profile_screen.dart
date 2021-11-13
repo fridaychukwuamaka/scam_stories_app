@@ -29,9 +29,7 @@ class ProfileScreen extends StatelessWidget {
           'Profile',
         ),
         leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
+          onTap: () => Get.back(),
           child: Icon(
             FeatherIcons.chevronLeft,
             color: Colors.black,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-
 import 'constants/constants.dart';
 
 Future<void> main() async {
@@ -18,7 +17,6 @@ Future<void> main() async {
 // TODO: LOGIN/SIGNUP VALIDATION
 // TODO: ONCLICK TAG
 // TODO: ADD SEARCH FEATURE
-final box = GetStorage();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Scam App',
       debugShowCheckedModeBanner: false,
       theme: AppThemes.lightTheme,
-      initialRoute: box.hasData('auth-token') ? Routes.home : Routes.login,
+      initialRoute: Routes.home,
       getPages: AppPages.routes,
     );
   }

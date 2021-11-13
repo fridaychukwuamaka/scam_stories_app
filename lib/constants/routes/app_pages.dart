@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:scam_stories_app/middlewares/auth_guard.dart';
 import 'package:scam_stories_app/view/screens/auth/login_screen.dart';
 import 'package:scam_stories_app/view/screens/auth/signup_screen.dart';
 import 'package:scam_stories_app/view/screens/home_screen.dart';
@@ -23,6 +24,9 @@ class AppPages {
     GetPage(
       name: Routes.profile,
       page: () => ProfileScreen(),
+      middlewares: [
+        AuthGuard(),
+      ],
     ),
     GetPage(
       name: Routes.signup,

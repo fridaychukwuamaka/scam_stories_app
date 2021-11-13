@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:scam_stories_app/repository/api_status.dart';
+import 'package:scam_stories_app/services/api_status.dart';
 
 CollectionReference _users = FirebaseFirestore.instance.collection('users');
 
@@ -41,6 +41,10 @@ class UserService {
     }
 
     return Success(msg: 'Welcome $fullname', response: register.user);
+  }
+
+  logout() {
+    _auth.signOut();
   }
 
   Future<void> updateUserImg(String imgUrl, String userId) async {

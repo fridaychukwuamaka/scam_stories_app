@@ -5,21 +5,25 @@ class AppInput extends StatelessWidget {
     Key? key,
     required this.label,
     this.obscure = false,
-    required this.onchanged, required this.controller,
+    required this.onchanged,
+    required this.controller,
+    this.validator,
   }) : super(key: key);
   final String label;
   final Function(String) onchanged;
   final bool obscure;
+  final String? Function(String?)? validator;
   final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
+        TextFormField(
           obscureText: obscure,
           onChanged: onchanged,
           controller: controller,
+          validator: validator,
           style: TextStyle(
             color: Colors.white,
             fontSize: 17,
@@ -37,6 +41,9 @@ class AppInput extends StatelessWidget {
               color: Colors.white,
             )),
             hintText: label,
+            errorStyle: TextStyle(
+              fontFamily: 'Montserrat',
+            ),
             hintStyle: TextStyle(
               color: Colors.white,
               fontSize: 17,

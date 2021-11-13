@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/model/scam_type.dart';
 import 'package:scam_stories_app/model/story.dart';
-import 'package:scam_stories_app/repository/api_status.dart';
-import 'package:scam_stories_app/repository/story_services.dart';
+import 'package:scam_stories_app/services/api_status.dart';
+import 'package:scam_stories_app/services/story_services.dart';
 import 'package:scam_stories_app/utils/image_utils.dart';
 
 StoryServices _storyServices = StoryServices();
@@ -42,7 +42,7 @@ class StoryController extends GetxController {
 
       var result = await _storyServices.postStory(newStory);
 
-      AppThemes.snackBar(result.msg);
+      AppThemes.snackBar(result.msg, inverted: true);
 
       if (result.runtimeType == Success) {
         clearController();
@@ -67,45 +67,30 @@ class StoryController extends GetxController {
     );
 
     var result = await _storyServices.editStory(newStory, docPath);
-
-    Get.snackbar(
-      'Message',
-      result.msg,
-      backgroundColor: Colors.white,
-      margin: EdgeInsets.zero,
-      borderRadius: 0,
-    );
+    AppThemes.snackBar(result.msg, inverted: true);
   }
 
   toggleBookmark(
     List<QueryDocumentSnapshot<Object?>> bookmark,
     Story story,
   ) async {
-    var result;
-    if (bookmark.isEmpty) {
-      result = await _storyServices.bookMarkStory(story);
+    if (userId.isNotEmpty) {
+      var result;
+      if (bookmark.isEmpty) {
+        result = await _storyServices.bookMarkStory(story);
+      } else {
+        result = await _storyServices.removeBookMark(bookmark.single.id);
+      }
+      AppThemes.snackBar(result.msg, inverted: true);
     } else {
-      result = await _storyServices.removeBookMark(bookmark.single.id);
+      Get.toNamed(Routes.login);
     }
-    Get.snackbar(
-      'Message',
-      result.msg,
-      backgroundColor: Colors.white,
-      margin: EdgeInsets.zero,
-      borderRadius: 0,
-    );
   }
 
   Future<void> deleteStory(String postId) async {
     var result = await _storyServices.deleteStory(postId);
 
-    Get.snackbar(
-      'Message',
-      result.msg,
-      backgroundColor: Colors.white,
-      margin: EdgeInsets.zero,
-      borderRadius: 0,
-    );
+    AppThemes.snackBar(result.msg, inverted: true);
   }
 
   getInitStory(Story story) {

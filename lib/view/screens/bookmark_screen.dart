@@ -44,7 +44,7 @@ class BookMarkScreen extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: StreamBuilder<QuerySnapshot<Object?>>(
-          stream: _bookmarks.where('userId', isEqualTo: userId).snapshots(),
+          stream: _bookmarks.where('userId', isEqualTo: userId) .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
               print(snapshot.data!.docs[0].data());

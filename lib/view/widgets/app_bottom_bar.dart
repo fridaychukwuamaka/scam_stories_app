@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
-import 'package:scam_stories_app/view/screens/search_screen.dart';
+
 
 class AppBottomBar extends StatelessWidget {
   const AppBottomBar({
@@ -22,7 +21,7 @@ class AppBottomBar extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Get.to(() => SearchScreen());
+              // Get.to(() => SearchScreen());
             },
             icon: Icon(
               FeatherIcons.search,

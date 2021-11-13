@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
+import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/controller/app_bar_controller.dart';
 import 'package:scam_stories_app/model/story.dart';
 import 'package:scam_stories_app/view/screens/story/more_stories_screen.dart';
@@ -28,12 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    appBarCont.initController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    appBarCont.initController();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
@@ -417,9 +418,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         actions: [
           InkWell(
-            onTap: () {
-              Get.to(() => ProfileScreen());
-            },
+            onTap: () => Get.toNamed(Routes.profile),
             child: Icon(
               FeatherIcons.user,
               color: Colors.black,
