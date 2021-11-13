@@ -5,6 +5,7 @@ import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/model/scam_type.dart';
 import 'package:scam_stories_app/model/story.dart';
 import 'package:scam_stories_app/services/api_status.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 import 'package:scam_stories_app/services/story_services.dart';
 import 'package:scam_stories_app/utils/image_utils.dart';
 
@@ -22,6 +23,7 @@ class StoryController extends GetxController {
   get clearSlectedTag => selectedTag.value = 0;
 
   Future<void> writeStory(GlobalKey<FormState> formKey) async {
+    final userId = MyPref.userId.val;
     var isValid = formKey.currentState!.validate();
 
     if (isValid) {
@@ -51,13 +53,14 @@ class StoryController extends GetxController {
   }
 
   Future<void> editStory(String docPath) async {
+    final userId = MyPref.userId.val;
     Story newStory = Story(
       title: title.text,
       author: 'Anonymous',
       msg: msg.text,
       experience: 0,
       authorId: userId,
-      img: '',
+      img: img,
       tags: [
         'All',
         scamTypes[selectedTag.value].label,
@@ -74,6 +77,7 @@ class StoryController extends GetxController {
     List<QueryDocumentSnapshot<Object?>> bookmark,
     Story story,
   ) async {
+    final userId = MyPref.userId.val;
     if (userId.isNotEmpty) {
       var result;
       if (bookmark.isEmpty) {
@@ -98,6 +102,7 @@ class StoryController extends GetxController {
     title.text = story.title;
     msg.text = story.msg;
     selectedTag.value = scamTypes.indexWhere((e) => e.label == story.tags![1]);
+    img = story.img!;
   }
 
   setTypes() {
@@ -109,6 +114,7 @@ class StoryController extends GetxController {
     title.clear();
     msg.clear();
     selectedTag.value = 0;
+    img = '';
   }
 
   onSelectedTag(bool selected, int index) {

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/model/story.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 
 import 'api_status.dart';
 
@@ -55,6 +56,7 @@ class StoryServices {
   }
 
   bookMarkStory(Story story) async {
+     var userId = MyPref.userId.val;
     if (userId.isNotEmpty) {
       try {
         await _bookmark.doc().set({

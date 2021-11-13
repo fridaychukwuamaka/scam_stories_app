@@ -8,7 +8,6 @@ import 'package:scam_stories_app/controller/app_bar_controller.dart';
 import 'package:scam_stories_app/model/story.dart';
 import 'package:scam_stories_app/view/screens/story/more_stories_screen.dart';
 import 'package:scam_stories_app/view/screens/news_screen.dart';
-import 'package:scam_stories_app/view/screens/profile_screen.dart';
 import 'package:scam_stories_app/view/widgets/app_bottom_bar.dart';
 import 'package:scam_stories_app/view/widgets/news_horizontal_tile.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -407,7 +406,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Padding(
           padding: EdgeInsets.only(left: 8),
           child: Text(
-            'SCAM',
+            'SCAM STORIES',
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Montserrat',

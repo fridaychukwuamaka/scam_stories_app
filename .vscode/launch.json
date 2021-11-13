@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "scam_app",
+            "name": "Scam News",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "scam_app (profile mode)",
+            "name": "Scam News (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "scam_app (release mode)",
+            "name": "Scam News (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

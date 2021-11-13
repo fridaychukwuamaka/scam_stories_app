@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/constants/routes/app_pages.dart';
 import 'package:scam_stories_app/services/api_status.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 import 'package:scam_stories_app/services/user_service.dart';
 
 UserService _userService = UserService();
@@ -24,8 +25,9 @@ class AuthController extends GetxController {
 
       if (result.runtimeType == Success) {
         User user = result.response;
-        await box.write('userId', user.uid);
-        await box.write('auth-token', await user.getIdToken());
+        MyPref.userId.val = user.uid;
+        MyPref.authToken.val = await user.getIdToken();
+
         clearTextContoller();
         await Get.offAllNamed(Routes.home);
         AppThemes.snackBar(result.msg, inverted: true);
@@ -46,8 +48,8 @@ class AuthController extends GetxController {
 
         print(user.uid);
         await addUser(user);
-        await box.write('userId', user.uid);
-        await box.write('auth-token', await user.getIdToken());
+        MyPref.userId.val = user.uid;
+        MyPref.authToken.val = await user.getIdToken();
         await Get.toNamed(Routes.home);
         clearTextContoller();
         AppThemes.snackBar(result.msg);
@@ -58,12 +60,10 @@ class AuthController extends GetxController {
   }
 
   Future<void> logout() async {
-    await box.remove('auth-token');
-    await box.remove('userId');
-    await box.erase();
+    MyPref.clearBoxes();
     _userService.logout();
     userInstance.clearPersistence();
-    await Get.offAllNamed(Routes.login);
+    await Get.offAllNamed(Routes.home);
   }
 
   Future<void> addUser(User user) async {

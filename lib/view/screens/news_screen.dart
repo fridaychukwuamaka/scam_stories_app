@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/controller/story_controller.dart';
 import 'package:scam_stories_app/model/story.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 import 'package:scam_stories_app/view/widgets/commentModal.dart';
 
 final CollectionReference bookmark =
@@ -31,6 +32,7 @@ class NewsScreen extends StatefulWidget {
 
 class _NewsScreenState extends State<NewsScreen> {
   ScrollController _scrollController = ScrollController();
+     final userId = MyPref.userId.val;
   double _scrollOfset = 0;
   List scamTypes = [];
 

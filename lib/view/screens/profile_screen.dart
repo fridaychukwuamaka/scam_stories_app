@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/controller/auth_controller.dart';
 import 'package:scam_stories_app/controller/profile_controller.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 import 'package:scam_stories_app/view/screens/bookmark_screen.dart';
 import 'package:scam_stories_app/view/screens/story/my_story.dart';
 import 'package:scam_stories_app/view/screens/story/write_post_screen.dart';
@@ -18,6 +19,7 @@ class ProfileScreen extends StatelessWidget {
 
   final authCont = Get.put(AuthController());
   final profileCont = Get.put(ProfileController());
+     final userId = MyPref.userId.val;
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +167,7 @@ class ProfileScreen extends StatelessWidget {
             height: 32,
           ),
           ProfileScreenLink(
-            title: 'My Story',
+            title: 'My Stories',
             icon: FeatherIcons.bookOpen,
             onTap: () {
               Get.to(

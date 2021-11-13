@@ -1,4 +1,4 @@
-# scam_app
+# Scam News
 
 A new Flutter project.
 

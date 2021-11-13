@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/controller/story_controller.dart';
 import 'package:scam_stories_app/model/story.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 
 final CollectionReference _bookmark =
     FirebaseFirestore.instance.collection('bookmarks');
@@ -24,6 +25,7 @@ class NewsHorizonTile extends StatelessWidget {
   final bool isBookmarkIcon;
 
   final StoryController storyCont = Get.put(StoryController());
+   final userId = MyPref.userId.val;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class NewsHorizonTile extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         color: Colors.white,
-        padding: const EdgeInsets.only(bottom: 35, right: 0),
+        padding: const EdgeInsets.only(bottom: 45, right: 0),
         child: Row(
           children: [
             story.img!.isNotEmpty
@@ -59,14 +61,48 @@ class NewsHorizonTile extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      story.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            story.title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                           SizedBox(
+                          width: isBookmarkIcon ? 15 : 0,
+                        ),
+                         isBookmarkIcon
+                            ? StreamBuilder<QuerySnapshot<Object?>>(
+                                stream: _bookmark
+                                    .where('postId', isEqualTo: story.reportId)
+                                    .where('userId', isEqualTo: userId)
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  IconData icon = FeatherIcons.bookmark;
+                                  List<QueryDocumentSnapshot<Object?>>
+                                      bookMark = [];
+
+                                  if (snapshot.hasData &&
+                                      snapshot.data!.docs.isNotEmpty) {
+                                    bookMark = snapshot.data!.docs;
+                                    icon = Icons.bookmark;
+                                  }
+                                  return InkWell(
+                                    onTap: () => storyCont.toggleBookmark(
+                                        bookMark, story),
+                                    child: Icon(icon,
+                                        size: 25, color: Colors.black),
+                                  );
+                                },
+                              )
+                            : SizedBox.shrink(),
+                      ],
                     ),
                     SizedBox(
                       height: 5,
@@ -101,30 +137,8 @@ class NewsHorizonTile extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: isBookmarkIcon ? 15 : 0,
-            ),
-            isBookmarkIcon
-                ? StreamBuilder<QuerySnapshot<Object?>>(
-                    stream: _bookmark
-                        .where('postId', isEqualTo: story.reportId)
-                        .where('userId', isEqualTo: userId)
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      IconData icon = FeatherIcons.bookmark;
-                      List<QueryDocumentSnapshot<Object?>> bookMark = [];
-
-                      if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-                        bookMark = snapshot.data!.docs;
-                        icon = Icons.bookmark;
-                      }
-                      return InkWell(
-                        onTap: () => storyCont.toggleBookmark(bookMark, story),
-                        child: Icon(icon, size: 25, color: Colors.black),
-                      );
-                    },
-                  )
-                : SizedBox.shrink(),
+          
+           
           ],
         ),
       ),

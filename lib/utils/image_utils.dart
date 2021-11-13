@@ -17,13 +17,13 @@ class ImageUtils {
       var url = await sentImage.ref.getDownloadURL();
       print(url);
 
-      AppThemes.snackBar('Image Uploaded Succefully');
+      AppThemes.snackBar('Image Uploaded Succefully', inverted: true);
       return url;
     } catch (e) {
       firebase_storage.FirebaseException? error;
       error = e as firebase_storage.FirebaseException?;
 
-      AppThemes.snackBar(error!.message);
+      AppThemes.snackBar(error!.message, inverted: true);
       throw (e);
     }
   }

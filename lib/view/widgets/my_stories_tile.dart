@@ -28,7 +28,7 @@ class MyStoriesTile extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 35, right: 25),
+        padding: const EdgeInsets.only(bottom: 45, right: 25),
         child: Row(
           children: [
             story.img!.isNotEmpty

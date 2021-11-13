@@ -1,6 +1,6 @@
 {
-    "name": "scam_app",
-    "short_name": "scam_app",
+    "name": "Scam News",
+    "short_name": "Scam News",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

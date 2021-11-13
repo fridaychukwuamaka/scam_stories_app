@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/model/comment.dart';
 import 'package:scam_stories_app/services/comment_services.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 
 CommentServices _commentServices = CommentServices();
 
@@ -11,6 +12,7 @@ class CommentController extends GetxController {
   TextEditingController comment = TextEditingController();
 
   postComment(String reportId) async {
+    var userId = MyPref.userId.val;
     if (userId.isEmpty) {
       Get.toNamed(Routes.login);
     } else if (comment.text.isNotEmpty) {

@@ -4,6 +4,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:scam_stories_app/constants/constants.dart';
 import 'package:scam_stories_app/model/story.dart';
+import 'package:scam_stories_app/services/my_pref.dart';
 import 'package:scam_stories_app/view/screens/news_screen.dart';
 import 'package:scam_stories_app/view/widgets/my_stories_tile.dart';
 
@@ -17,6 +18,7 @@ class MyStories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+       final userId = MyPref.userId.val;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'constants/constants.dart';
 
 Future<void> main() async {
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Scam App',
+      title: 'Scam News App',
       debugShowCheckedModeBanner: false,
       theme: AppThemes.lightTheme,
       initialRoute: Routes.home,

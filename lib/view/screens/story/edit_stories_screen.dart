@@ -216,10 +216,13 @@ class _EditPostScreenState extends State<EditPostScreen> {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 29, vertical: 15),
-                child: Text(
-                  'Upload',
-                  style: TextStyle(
-                    color: Colors.white,
+                child: InkWell(
+                    onTap: () async => await storyCont.getImage(),
+                  child: Text(
+                    'Upload',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -229,37 +232,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
               ),
             ],
           ),
-          SizedBox(
-            height: 30,
-          ),
-          Text(
-            'Upload neccesary file',
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 29, vertical: 15),
-                child: Text(
-                  'Upload',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(3),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
+  SizedBox(
             height: 30,
           ),
           AppButton(

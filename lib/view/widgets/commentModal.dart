@@ -88,6 +88,7 @@ class CommentModal extends StatelessWidget {
                                       );
                                       return CommentTile(
                                         comment: comment,
+                                        
                                       );
                                     } else {
                                       return SizedBox.shrink();
